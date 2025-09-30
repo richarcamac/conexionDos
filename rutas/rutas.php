@@ -34,12 +34,13 @@ if(count(array_filter($arrayRutas)) == 0) {
                 Capturar datos
                 =============================================*/
 
-                $datos = array( "nombre"=>$_POST["nombre"],
-                                "correo"=>$_POST["correo"],
-                                "password"=>$_POST["password"],
-                                "rol"=>$_POST["rol"],
-                                "status"=>$_POST["status"],
-                            );
+                $datos = array( 
+                    "nombre"   => $_POST["nombre"]   ?? null,
+                    "correo"   => $_POST["correo"]   ?? null,
+                    "password" => $_POST["password"] ?? null,
+                    "rol"      => $_POST["rol"]      ?? null,
+                    "status"   => $_POST["status"]   ?? null,
+                );
 
 
                 $registro = new ControladorUsuarios();
