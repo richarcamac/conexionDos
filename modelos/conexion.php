@@ -6,9 +6,9 @@ class Conexion{
 
 		$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
 		
-		$link = new PDO("mysql:host=localhost;dbname=id12906510_ecommerce",
-						"id12906510_ecommerce",
-						"eCommerce", $options);
+		$link = new PDO("mysql:host=mysql-asiridata.alwaysdata.net;dbname=asiridata_usuarios",
+						"asiridata",
+						"123456789Asiri", $options);
 
 		$link->exec("set names utf8");
 
