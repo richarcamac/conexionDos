@@ -1,17 +1,23 @@
 # Usa la imagen oficial de PHP con Apache
 FROM php:8.1-apache
 
-# Habilita mod_rewrite
+# Activa el módulo rewrite de Apache
 RUN a2enmod rewrite
 
-# Copia los archivos del proyecto al directorio raíz de Apache
+# Elimina cualquier archivo antiguo para evitar caché
+RUN rm -rf /var/www/html/*
+
+# Copia todo el contenido de tu proyecto al directorio del servidor
 COPY . /var/www/html/
 
-# Establece permisos adecuados (opcional pero recomendado)
+# Cambia el propietario de los archivos a www-data para evitar problemas de permisos
 RUN chown -R www-data:www-data /var/www/html
 
-# Permite el uso de .htaccess modificando apache2.conf
+# Cambia AllowOverride None a AllowOverride All para que funcione .htaccess
 RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 
-# Exponer el puerto 80
+# Exponer puerto 80 para el tráfico HTTP
 EXPOSE 80
+
+# Comando para iniciar Apache en primer plano (necesario para Docker)
+CMD ["apache2-foreground"]
